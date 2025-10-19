@@ -18,5 +18,6 @@ export const setupSearch = (): void => {
   };
 
   submitBtn?.addEventListener('click', handleSearch);
+  searchbar?.addEventListener('keydown', handleSearch);
   searchbar?.addEventListener('keypress', (e) => e.key === 'Enter' && handleSearch());
 };

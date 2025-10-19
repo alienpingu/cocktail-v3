@@ -7,10 +7,10 @@ export const renderResults = (drinks: Cocktail[]): void => {
 
   container.innerHTML = drinks?.length ?
     drinks.map(drink => `
-      <div class="cocktail-card">
-        <a href="${buildCocktailUrl(drink.idDrink)}" class="cocktail-link">
-          <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" loading="lazy" />
-          <div>${drink.strDrink}</div>
+      <div class="col-6">
+        <a href="${buildCocktailUrl(drink.idDrink)}">
+          <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
+          <h3 class="bg-light text-primary" style="margin-top:-1rem;">${drink.strDrink}</h3>
         </a>
       </div>
     `).join('') :

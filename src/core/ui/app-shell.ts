@@ -4,12 +4,12 @@ export const renderHomePage = (): void => {
 
   app.innerHTML = `
     <div>
-      <h1>Cocktail Search</h1>
-      <div>
-        <input type="text" id="searchbar" placeholder="Search for a cocktail..." />
-        <button id="submit-btn">Search</button>
+      <h1>Cocktail Search Engine</h1>
+      <div class="row">
+        <input type="text" id="searchbar" placeholder="Search for a cocktail..." class="col-9"/>
+        <button id="submit-btn" class="col-3">Search</button>
       </div>
-      <div id="results-container"></div>
+      <div id="results-container" class="row"></div>
     </div>
   `;
 };

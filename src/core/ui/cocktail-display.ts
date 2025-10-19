@@ -9,11 +9,11 @@ export const renderCocktailDetails = (drink: Cocktail): void => {
         <button id="back-button">← Back to search</button>
       </div>
       <div>
-        <h1>${drink.strDrink}</h1>
-        <div>
-          <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
+        <div class="flex-center">
+          <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" class=""/>
         </div>
-        <div>
+        <div class="container">
+          <h1>${drink.strDrink}</h1>
           <div>
             <h2>Ingredients</h2>
             <ul>
