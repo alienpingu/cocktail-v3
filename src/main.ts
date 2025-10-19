@@ -1,36 +1,22 @@
-import { Router } from './router/router';
-import { UIRenderer } from './services/ui';
-import { SearchBar } from './components/SearchBar';
-import { loadCocktailDetails } from './components/CocktailLookup';
+import { Router, renderHomePage, setupSearch, loadCocktailDetails } from './core';
 
 const router = new Router();
 
-function setupRoutes(): void {
-  router.addRoute('^/$', () => {
-    UIRenderer.renderHomePage();
-    new SearchBar();
-  });
+router.addRoute('^/$', () => {
+  renderHomePage();
+  setupSearch();
+});
 
-  router.addRoute('^/lookup/\\d+$', async () => {
-    try {
-      await loadCocktailDetails();
-    } catch (error) {
-      console.error('Error loading cocktail details:', error);
-      UIRenderer.renderHomePage();
-      new SearchBar();
-    }
-  });
+router.addRoute('^/lookup/\\d+$', () => loadCocktailDetails());
 
-  router.setNotFoundHandler(() => {
-    UIRenderer.renderHomePage();
-    new SearchBar();
-  });
-}
+router.setNotFoundHandler(() => {
+  renderHomePage();
+  setupSearch();
+});
 
-function init(): void {
-  setupRoutes();
+const init = () => {
   router.navigate(router.getCurrentPath());
-}
+};
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);

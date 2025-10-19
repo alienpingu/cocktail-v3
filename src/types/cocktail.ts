@@ -1,4 +1,4 @@
-export interface Drink {
+export interface Cocktail {
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
@@ -40,10 +40,5 @@ export interface Drink {
 }
 
 export interface ApiResponse {
-  drinks: Drink[] | null;
-}
-
-export interface CocktailError {
-  message: string;
-  type: 'NOT_FOUND' | 'INVALID_ID' | 'NETWORK_ERROR' | 'API_ERROR';
+  drinks: Cocktail[] | null;
 }
