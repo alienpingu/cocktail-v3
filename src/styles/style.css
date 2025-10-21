@@ -40,8 +40,9 @@ main {
 
 #grid-component {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.25fr));
   gap: 1rem;
+  justify-content: center;
 }
 
 .card {
@@ -68,4 +69,71 @@ main {
   flex: 1;
   padding: 0.5rem;
   font-size: 1rem;
+}
+
+/* cocktails */
+
+.lookup-component {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.cocktail-title {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.cocktail-thumb {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto 15px auto;
+  border-radius: 6px;
+}
+
+.cocktail-instructions {
+  font-size: 1em;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.cocktail-meta p {
+  margin: 4px 0;
+}
+
+.ingredients-title {
+  margin-top: 20px;
+  font-size: 1.4em;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.ingredient-img {
+  width: 40px;
+  height: 40px;
+}
+
+.ingredient-name {
+  font-weight: bold;
+}
+
+.ingredient-measure {
+  color: #555;
+}
+
+.no-cocktail {
+  text-align: center;
+  color: #999;
 }
