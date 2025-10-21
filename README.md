@@ -1,26 +1,32 @@
 # Cocktail Search App
 
-A modern, well-organized cocktail search application built with TypeScript and Vite.
+A modern, well-organized cocktail search application built with vanilla TypeScript and HTML - no external dependencies required!
 
 ## 🏗️ Project Structure
 
 ```
 src/
-├── types/
-│   └── drink.ts          # TypeScript interfaces for cocktail data
-├── services/
-│   ├── api.ts           # API service for cocktail data fetching
-│   ├── ui.ts            # UI rendering utilities
-│   └── url-utils.ts     # URL parsing and validation utilities
-├── router/
-│   └── router.ts        # Custom routing system
+├── api/
+│   └── searchCocktails.ts    # API service for cocktail data fetching
 ├── components/
-│   ├── SearchBar.ts     # Search bar component
-│   ├── ResultsContainer.ts # Search results component
-│   ├── CocktailDetails.ts  # Cocktail details component
-│   └── CocktailLookup.ts   # Cocktail lookup component
-├── main.ts              # Application entry point with routing setup
-└── index.ts             # Barrel exports for easy imports
+│   ├── BaseComponent.ts     # Base component class
+│   ├── CardComponent.ts     # Cocktail card component with progressive image sizing
+│   ├── GridComponent.ts     # Grid layout component
+│   ├── LookupComponent.ts    # Cocktail detail view component
+│   └── SearchComponent.ts   # Search interface component
+├── core/
+│   └── store.ts             # Global state management
+├── pages/
+│   ├── AboutPage.ts         # About page component
+│   ├── HomePage.ts          # Home page component
+│   ├── LookupPage.ts        # Cocktail lookup page
+│   └── SearchPage.ts        # Search results page
+├── router/
+│   ├── Router.ts           # Custom routing system
+│   └── routes.ts           # Route definitions
+├── styles/
+│   └── style.css           # Application styles
+└── main.ts                 # Application entry point
 ```
 
 ## ✨ Features
@@ -33,44 +39,63 @@ src/
 
 ## 🚀 Getting Started
 
+This project uses Vite for development serving and building, but the core application code has no external dependencies.
+
+### For Development
+
 1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start development server:
+2. Start development server with hot reload:
    ```bash
    npm run dev
    ```
 
-3. Build for production:
+3. The application will be available at `http://localhost:5173`
+
+### For Production
+
+1. Build the application:
    ```bash
    npm run build
    ```
 
+2. The built files will be in the `dist/` directory
+
+3. Serve the `dist/index.html` file using any web server
+
 ## 📁 Key Components
 
-### Types (`types/drink.ts`)
-- `Drink`: Interface for cocktail data structure
-- `ApiResponse`: Interface for API responses
-- `CocktailError`: Interface for error handling
+### API (`api/searchCocktails.ts`)
+- Handles all communication with [TheCocktailDB](https://www.thecocktaildb.com/) API
+- Search cocktails by name functionality
+- Error handling for API failures
 
-### Services
-- **API Service** (`services/api.ts`): Handles all API communication
-- **UI Service** (`services/ui.ts`): Manages UI rendering and state
-- **URL Utils** (`services/url-utils.ts`): URL parsing and validation utilities
+### Core (`core/store.ts`)
+- Global state management system
+- Centralized data store for cocktail information
+- State synchronization across components
 
-### Router (`router/router.ts`)
+### Router (`router/Router.ts`, `router/routes.ts`)
 Custom routing system that handles:
+- Client-side navigation
 - Route pattern matching
-- Navigation handling
-- Fallback for unknown routes
+- Page component rendering
 
 ### Components
-- **SearchBar** (`components/SearchBar.ts`): Interactive search component
-- **ResultsContainer** (`components/ResultsContainer.ts`): Displays search results
-- **CocktailDetails** (`components/CocktailDetails.ts`): Shows detailed cocktail information
-- **CocktailLookup** (`components/CocktailLookup.ts`): Handles cocktail detail page logic
+- **BaseComponent** (`components/BaseComponent.ts`): Base class for all components
+- **CardComponent** (`components/CardComponent.ts`): Individual cocktail card with progressive image sizing
+- **GridComponent** (`components/GridComponent.ts`): Grid layout for cocktail cards
+- **LookupComponent** (`components/LookupComponent.ts`): Detailed cocktail view
+- **SearchComponent** (`components/SearchComponent.ts`): Search interface
+
+### Pages
+- **HomePage** (`pages/HomePage.ts`): Main landing page
+- **SearchPage** (`pages/SearchPage.ts`): Search results page
+- **LookupPage** (`pages/LookupPage.ts`): Individual cocktail detail page
+- **AboutPage** (`pages/AboutPage.ts`): Information about the application
 
 ## 🔧 API Integration
 
