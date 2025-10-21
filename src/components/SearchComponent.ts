@@ -12,6 +12,7 @@ export class SearchComponent extends BaseComponent {
 
     this.addEventListener(submitBtn, "click", async () => {
       const {searchQuery} = this.getGlobalState();
+      if (searchQuery.length === 0) return;
       const results = await searchCocktails(searchQuery);
       this.setGlobalState({ cocktails: results });
       this.mount();
@@ -19,7 +20,9 @@ export class SearchComponent extends BaseComponent {
 
     this.addEventListener(searchbar, "change", async (event) => {
       const target = event.target as HTMLInputElement;
-      this.setGlobalState({ searchQuery:  target.value});
+      if (target.value.length === 0) return;
+      const results = await searchCocktails(target.value);
+      this.setGlobalState({ cocktails: results, searchQuery:  target.value });
       this.mount();
     })
   }

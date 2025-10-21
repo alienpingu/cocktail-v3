@@ -14,8 +14,8 @@ export class CardComponent extends BaseComponent {
   render(): string {
     return `
        <a href="/lookup/${this.cocktail.idDrink}" class="card" data-index="${this.index}">
-            <h3>${this.cocktail.strDrink}</h3>
             <img src="${this.cocktail.strDrinkThumb}/small" alt="${this.cocktail.strDrink}" />
+            <p>${this.cocktail.strDrink}</p>
         </a>
     `;
   }

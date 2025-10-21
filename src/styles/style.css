@@ -15,7 +15,57 @@ video {
   display: block;
 }
 
+input[type="button"] { 
+  cursor: pointer;
+}
+
+nav {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border, #ccc);
+  margin-bottom: 1rem;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+
 main {
   max-width: min(70ch, 100% - 4rem);
   margin-inline: auto;
+}
+
+#grid-component {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease-in-out;
+  text-align: center;
+}
+.card img {
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+  height: auto;
+}
+
+#search-area {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#searchbar {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
