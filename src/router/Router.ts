@@ -29,6 +29,9 @@ export class Router {
   }
 
   private handleRoute(): void {
+    // Scroll to top immediately when route changes
+    window.scrollTo(0, 0);
+
     const path = window.location.pathname;
     const match = this.matchRoute(path);
 
@@ -38,13 +41,31 @@ export class Router {
     }
 
     if (this.currentPage) {
+      // Add fade-out animation to current page
       this.currentPage.unmount();
-    }
+      this.outlet.style.opacity = '0';
+      this.outlet.style.transform = 'translateY(-20px)';
 
+      // Wait for fade-out animation to complete before mounting new page
+      setTimeout(() => {
+        this.mountNewPage(match);
+      }, 300); // Match the CSS animation duration
+    } else {
+      // No current page, mount immediately
+      this.mountNewPage(match);
+    }
+  }
+
+  private mountNewPage(match: RouteMatch): void {
     const Page = match.route.component;
     const page = new Page(this.outlet);
     page.mount();
     this.currentPage = page;
+
+    // Apply fade-in animation
+    this.outlet.style.transition = 'opacity 0.6s cubic-bezier(.39,.575,.565,1.000), transform 0.6s cubic-bezier(.39,.575,.565,1.000)';
+    this.outlet.style.opacity = '1';
+    this.outlet.style.transform = 'translateY(0)';
   }
 
   private matchRoute(pathname: string): RouteMatch | null {
