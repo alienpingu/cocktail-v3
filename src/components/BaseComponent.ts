@@ -3,12 +3,14 @@ import type { ComponentState, EventListenerRecord, GlobalStoreState } from "../t
 
 export abstract class BaseComponent {
   protected root: HTMLElement;
+  protected routeParams?: Record<string, string>;
   protected state: ComponentState = {};
   private eventListeners: EventListenerRecord[] = [];
   private unsubscribeGlobal?: () => void;
 
-  constructor(root: HTMLElement) {
+  constructor(root: HTMLElement, routeParams?: Record<string, string>) {
     this.root = root;
+    this.routeParams = routeParams;
   }
 
   abstract render(): string;

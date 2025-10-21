@@ -1,5 +1,6 @@
 import { BaseComponent } from "./BaseComponent";
 import { CardComponent } from "./CardComponent";
+import { LoadingCardComponent } from "./LoadingCardComponent";
 import type { Cocktail } from "../types/index";
 
 export class GridComponent extends BaseComponent {
@@ -24,8 +25,19 @@ export class GridComponent extends BaseComponent {
   }
 
   render(): string {
-    const state = this.getGlobalState() as { cocktails: Cocktail[] };
-    const { cocktails } = state;
+    const state = this.getGlobalState() as { cocktails: Cocktail[]; isLoading: boolean };
+    const { cocktails, isLoading } = state;
+
+    if (isLoading) {
+      return `
+        <div id="grid-component">
+          ${Array.from({ length: 12 }, (_, index) =>
+            new LoadingCardComponent(document.createElement("div"), index).render()
+          ).join("")}
+        </div>
+      `;
+    }
+
     return `
       <div id="grid-component">
         ${cocktails

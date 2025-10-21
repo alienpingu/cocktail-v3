@@ -59,12 +59,68 @@ main {
   border: 1px solid var(--color-border, #ccc);
   border-radius: 8px;
   transition: box-shadow 0.2s ease-in-out;
-  text-align: center;
 }
 .card img {
   border-radius: 4px 4px 0 0;
   width: 100%;
   height: auto;
+  min-height: 205px;
+}
+.card p {
+  padding: 1rem;
+  margin: 0;
+}
+
+.loading-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+  border-radius: 4px 4px 0 0;
+}
+
+.loading-card {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+  padding: 1rem;
+}
+
+.loading-line {
+  height: 1rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.loading-line-1 {
+  width: 80%;
+}
+
+.loading-line-2 {
+  width: 60%;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 #search-area {

@@ -39,7 +39,7 @@ export class LookupComponent extends BaseComponent {
     if (!cocktailLookup) {
       return `
         <div id="lookup-component" class="lookup-component">
-          <p class="no-cocktail">Nessun cocktail selezionato.</p>
+          <p class="no-cocktail">No cocktail selected.</p>
         </div>
       `;
     }

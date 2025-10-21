@@ -58,7 +58,7 @@ export class Router {
 
   private mountNewPage(match: RouteMatch): void {
     const Page = match.route.component;
-    const page = new Page(this.outlet);
+    const page = new Page(this.outlet, match.params);
     page.mount();
     this.currentPage = page;
 

@@ -16,8 +16,9 @@ export class SearchComponent extends BaseComponent {
 
       if (searchQuery.length === 0) return;
 
+      this.setGlobalState({ isLoading: true });
       const results = await searchCocktails(searchQuery);
-      this.setGlobalState({ cocktails: results });
+      this.setGlobalState({ cocktails: results, isLoading: false });
       this.mount();
     });
 
@@ -25,10 +26,12 @@ export class SearchComponent extends BaseComponent {
       const target = event.target as HTMLInputElement;
       if (target.value.length === 0) return;
 
+      this.setGlobalState({ isLoading: true });
       const results = await searchCocktails(target.value);
       this.setGlobalState({
         cocktails: results,
-        searchQuery: target.value
+        searchQuery: target.value,
+        isLoading: false
       });
       this.mount();
     });

@@ -8,6 +8,7 @@ interface StoreState extends GlobalStoreState {
   searchQuery: string;
   cocktails: Cocktail[];
   cocktailLookup: Cocktail | null;
+  isLoading: boolean;
 }
 
 class Store<T extends Record<string, unknown>> {
@@ -41,4 +42,5 @@ export const GlobalStore = new Store<StoreState>({
   searchQuery: "",
   cocktails: [],
   cocktailLookup: null,
+  isLoading: false,
 });
