@@ -1,9 +1,10 @@
 import { GlobalStore } from "../core/store.js";
+import type { ComponentState, EventListenerRecord, GlobalStoreState } from "../types/index.js";
 
 export abstract class BaseComponent {
   protected root: HTMLElement;
-  protected state: Record<string, any> = {};
-  private eventListeners: Array<{ element: Element; type: string; listener: EventListener }> = [];
+  protected state: ComponentState = {};
+  private eventListeners: EventListenerRecord[] = [];
   private unsubscribeGlobal?: () => void;
 
   constructor(root: HTMLElement) {
@@ -15,8 +16,7 @@ export abstract class BaseComponent {
   mount(): void {
     this.root.innerHTML = this.render();
     this.bindEvents();
-
-    this.unsubscribeGlobal?.(); // se già iscritta, la resetta
+    this.unsubscribeGlobal?.();
     this.unsubscribeGlobal = GlobalStore.subscribe(() => this.onGlobalStateChange());
   }
 
@@ -33,22 +33,21 @@ export abstract class BaseComponent {
 
   unmount(): void {
     this.onUnmount();
-    for (const { element, type, listener } of this.eventListeners) {
+    this.eventListeners.forEach(({ element, type, listener }) => {
       element.removeEventListener(type, listener);
-    }
+    });
     this.eventListeners = [];
-
     this.unsubscribeGlobal?.();
     this.root.innerHTML = "";
   }
 
   protected onUnmount(): void {}
 
-  protected getGlobalState() {
+  protected getGlobalState(): GlobalStoreState {
     return GlobalStore.getState();
   }
 
-  protected setGlobalState(partial: Partial<ReturnType<typeof GlobalStore.getState>>) {
+  protected setGlobalState(partial: Partial<GlobalStoreState>): void {
     GlobalStore.setState(partial);
   }
 }

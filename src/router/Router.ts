@@ -1,6 +1,6 @@
-import { routes } from "./routes";
-import type { Route } from "./routes";
-import { BaseComponent } from "../components/BaseComponent";
+import { routes } from "./routes.js";
+import type { Route, RouteMatch } from "../types/index.js";
+import { BaseComponent } from "../components/BaseComponent.js";
 
 export class Router {
   private outlet: HTMLElement;
@@ -9,14 +9,14 @@ export class Router {
   constructor(outlet: HTMLElement) {
     this.outlet = outlet;
     window.addEventListener("popstate", () => this.handleRoute());
-    document.addEventListener("click", (e) => this.onLinkClick(e));
+    document.addEventListener("click", (e: MouseEvent) => this.onLinkClick(e));
   }
 
-  init() {
+  init(): void {
     this.handleRoute();
   }
 
-  private onLinkClick(e: MouseEvent) {
+  private onLinkClick(e: MouseEvent): void {
     const target = e.target as HTMLElement;
     const link = target.closest("a");
 
@@ -28,17 +28,17 @@ export class Router {
     }
   }
 
-  private handleRoute() {
+  private handleRoute(): void {
     const path = window.location.pathname;
     const match = this.matchRoute(path);
 
     if (!match) {
-      this.outlet.innerHTML = `<h2>404 - Pagina non trovata</h2>`;
+      this.outlet.innerHTML = "<h2>404 - Pagina non trovata</h2>";
       return;
     }
 
     if (this.currentPage) {
-      this.currentPage.unmount?.();
+      this.currentPage.unmount();
     }
 
     const Page = match.route.component;
@@ -47,7 +47,7 @@ export class Router {
     this.currentPage = page;
   }
 
-  private matchRoute(pathname: string): { route: Route; params: Record<string, string> } | null {
+  private matchRoute(pathname: string): RouteMatch | null {
     for (const route of routes) {
       const routeParts = route.path.split("/").filter(Boolean);
       const pathParts = pathname.split("/").filter(Boolean);
@@ -58,11 +58,12 @@ export class Router {
       let match = true;
 
       for (let i = 0; i < routeParts.length; i++) {
-        const rp = routeParts[i];
-        const pp = pathParts[i];
-        if (rp.startsWith(":")) {
-          params[rp.slice(1)] = decodeURIComponent(pp);
-        } else if (rp !== pp) {
+        const routePart = routeParts[i];
+        const pathPart = pathParts[i];
+
+        if (routePart.startsWith(":")) {
+          params[routePart.slice(1)] = decodeURIComponent(pathPart);
+        } else if (routePart !== pathPart) {
           match = false;
           break;
         }

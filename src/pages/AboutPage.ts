@@ -1,4 +1,4 @@
-import { BaseComponent } from "../components/BaseComponent";
+import { BaseComponent } from "../components/BaseComponent.js";
 
 export class AboutPage extends BaseComponent {
   render(): string {
@@ -11,7 +11,7 @@ export class AboutPage extends BaseComponent {
         <li>Abstract components</li>
         <li>Minimal use of css</li>
       </ul>
-      `;
+    `;
   }
 
   protected bindEvents(): void {}

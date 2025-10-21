@@ -1,5 +1,6 @@
-import { BaseComponent } from "./BaseComponent";
-import {CardComponent} from "./CardComponent";
+import { BaseComponent } from "./BaseComponent.js";
+import { CardComponent } from "./CardComponent.js";
+import type { Cocktail } from "../types/index.js";
 
 export class GridComponent extends BaseComponent {
   constructor(root: HTMLElement) {
@@ -7,10 +8,13 @@ export class GridComponent extends BaseComponent {
   }
 
   protected bindEvents(): void {
-    document.querySelectorAll("#grid-component .card").forEach((card) => {
+    const cards = document.querySelectorAll("#grid-component .card");
+    cards.forEach(card => {
       this.addEventListener(card, "click", () => {
-        const { cocktails } = this.getGlobalState();
+        const state = this.getGlobalState() as { cocktails: Cocktail[] };
+        const { cocktails } = state;
         const index = card.getAttribute("data-index");
+
         if (index !== null) {
           const cocktail = cocktails[parseInt(index)];
           this.setGlobalState({ cocktailLookup: cocktail });
@@ -20,13 +24,15 @@ export class GridComponent extends BaseComponent {
   }
 
   render(): string {
-    const { cocktails } = this.getGlobalState();
+    const state = this.getGlobalState() as { cocktails: Cocktail[] };
+    const { cocktails } = state;
     return `
       <div id="grid-component">
-            ${cocktails
-              .map((cocktail, index) => new CardComponent(document.createElement("div"), cocktail, index).render())
-              .join("")
-            }
+        ${cocktails
+          .map((cocktail: Cocktail, index: number) =>
+            new CardComponent(document.createElement("div"), cocktail, index).render()
+          )
+          .join("")}
       </div>
     `;
   }

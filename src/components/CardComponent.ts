@@ -1,9 +1,11 @@
-import { BaseComponent } from "./BaseComponent";
+import { BaseComponent } from "./BaseComponent.js";
+import type { Cocktail } from "../types/index.js";
 
 export class CardComponent extends BaseComponent {
-    private cocktail: any;
-    private index: number;
-  constructor(root: HTMLElement, cocktail:any, index:number) {
+  private cocktail: Cocktail;
+  private index: number;
+
+  constructor(root: HTMLElement, cocktail: Cocktail, index: number) {
     super(root);
     this.cocktail = cocktail;
     this.index = index;
@@ -13,10 +15,10 @@ export class CardComponent extends BaseComponent {
 
   render(): string {
     return `
-       <a href="/lookup/${this.cocktail.idDrink}" class="card" data-index="${this.index}">
-            <img src="${this.cocktail.strDrinkThumb}/small" alt="${this.cocktail.strDrink}" />
-            <p>${this.cocktail.strDrink}</p>
-        </a>
+      <a href="/lookup/${this.cocktail.idDrink}" class="card" data-index="${this.index}">
+        <img src="${this.cocktail.strDrinkThumb}/small" alt="${this.cocktail.strDrink}" />
+        <p>${this.cocktail.strDrink}</p>
+      </a>
     `;
   }
 }

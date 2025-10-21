@@ -1,6 +1,6 @@
-import { BaseComponent } from "../components/BaseComponent";
-import { SearchComponent } from "../components/SearchComponent";
-import { GridComponent } from "../components/GridComponent";
+import { BaseComponent } from "../components/BaseComponent.js";
+import { SearchComponent } from "../components/SearchComponent.js";
+import { GridComponent } from "../components/GridComponent.js";
 
 export class SearchPage extends BaseComponent {
   render(): string {

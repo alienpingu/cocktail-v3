@@ -1,6 +1,16 @@
+import type { GlobalStoreState, Cocktail } from "../types/index.js";
+
 type Listener = () => void;
 
-class Store<T extends Record<string, any>> {
+interface StoreState extends GlobalStoreState {
+  theme: string;
+  counter: number;
+  searchQuery: string;
+  cocktails: Cocktail[];
+  cocktailLookup: Cocktail | null;
+}
+
+class Store<T extends Record<string, unknown>> {
   private state: T;
   private listeners: Listener[] = [];
 
@@ -14,21 +24,21 @@ class Store<T extends Record<string, any>> {
 
   setState(partial: Partial<T>): void {
     this.state = { ...this.state, ...partial };
-    this.listeners.forEach((l) => l());
+    this.listeners.forEach(listener => listener());
   }
 
   subscribe(listener: Listener): () => void {
     this.listeners.push(listener);
     return () => {
-      this.listeners = this.listeners.filter((l) => l !== listener);
+      this.listeners = this.listeners.filter(l => l !== listener);
     };
   }
 }
 
-export const GlobalStore = new Store({
+export const GlobalStore = new Store<StoreState>({
   theme: "light",
   counter: 0,
   searchQuery: "",
-  cocktails: [] as Array<any>,
-  cocktailLookup: null as any,
+  cocktails: [],
+  cocktailLookup: null,
 });
