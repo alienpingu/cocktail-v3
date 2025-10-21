@@ -25,8 +25,8 @@ export class GridComponent extends BaseComponent {
   }
 
   render(): string {
-    const state = this.getGlobalState() as { cocktails: Cocktail[]; isLoading: boolean };
-    const { cocktails, isLoading } = state;
+    const state = this.getGlobalState() as { cocktails: Cocktail[]; isLoading: boolean; searchQuery: string };
+    const { cocktails, isLoading, searchQuery } = state;
 
     if (isLoading) {
       return `
@@ -34,6 +34,14 @@ export class GridComponent extends BaseComponent {
           ${Array.from({ length: 12 }, (_, index) =>
             new LoadingCardComponent(document.createElement("div"), index).render()
           ).join("")}
+        </div>
+      `;
+    }
+
+    if (cocktails.length === 0 && !isLoading && searchQuery.trim() !== "") {
+      return `
+        <div id="grid-component">
+          <p>No cocktails found.</p>
         </div>
       `;
     }
