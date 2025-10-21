@@ -1,25 +1,7 @@
-import { Router, renderHomePage, setupSearch, loadCocktailDetails } from './core';
+import { Router } from "./router/Router.js";
 
-const router = new Router();
-
-router.addRoute('^/$', () => {
-  renderHomePage();
-  setupSearch();
+window.addEventListener("DOMContentLoaded", (): void => {
+  const appRoot = document.getElementById("app")!;
+  const router = new Router(appRoot);
+  router.init();
 });
-
-router.addRoute('^/lookup/\\d+$', () => loadCocktailDetails());
-
-router.setNotFoundHandler(() => {
-  renderHomePage();
-  setupSearch();
-});
-
-const init = () => {
-  router.navigate(router.getCurrentPath());
-};
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
