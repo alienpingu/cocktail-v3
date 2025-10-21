@@ -1,6 +1,6 @@
-import { routes } from "./routes.js";
-import type { Route, RouteMatch } from "../types/index.js";
-import { BaseComponent } from "../components/BaseComponent.js";
+import { routes } from "./routes";
+import type { RouteMatch } from "../types/index";
+import { BaseComponent } from "../components/BaseComponent";
 
 export class Router {
   private outlet: HTMLElement;

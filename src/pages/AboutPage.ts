@@ -1,4 +1,4 @@
-import { BaseComponent } from "../components/BaseComponent.js";
+import { BaseComponent } from "../components/BaseComponent";
 
 export class AboutPage extends BaseComponent {
   render(): string {

@@ -1,5 +1,5 @@
-import { BaseComponent } from "./BaseComponent.js";
-import type { Cocktail } from "../types/index.js";
+import { BaseComponent } from "./BaseComponent";
+import type { Cocktail } from "../types/index";
 
 export class CardComponent extends BaseComponent {
   private cocktail: Cocktail;

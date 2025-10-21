@@ -1,5 +1,5 @@
-import { BaseComponent } from "../components/BaseComponent.js";
-import { LookupComponent } from "../components/LookupComponent.js";
+import { BaseComponent } from "../components/BaseComponent";
+import { LookupComponent } from "../components/LookupComponent";
 
 export class LookupPage extends BaseComponent {
   constructor(root: HTMLElement) {

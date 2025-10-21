@@ -1,4 +1,4 @@
-import type { GlobalStoreState, Cocktail } from "../types/index.js";
+import type { GlobalStoreState, Cocktail } from "../types/index";
 
 type Listener = () => void;
 

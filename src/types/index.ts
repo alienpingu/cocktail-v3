@@ -1,4 +1,4 @@
-import type { BaseComponent } from "../components/BaseComponent.js";
+import type { BaseComponent } from "../components/BaseComponent";
 
 export interface ComponentState {
   [key: string]: unknown;

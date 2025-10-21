@@ -1,4 +1,4 @@
-import { Router } from "./router/Router.js";
+import { Router } from "./router/Router";
 
 window.addEventListener("DOMContentLoaded", (): void => {
   const appRoot = document.getElementById("app")!;

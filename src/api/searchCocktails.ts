@@ -1,4 +1,4 @@
-import type { Cocktail, SearchCocktailsResponse } from "../types/index.js";
+import type { Cocktail, SearchCocktailsResponse } from "../types/index";
 
 const searchCocktails = async (query: string): Promise<Cocktail[]> => {
   const response = await fetch(

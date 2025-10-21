@@ -1,5 +1,5 @@
-import { BaseComponent } from "./BaseComponent.js";
-import searchCocktails from "../api/searchCocktails.js";
+import { BaseComponent } from "./BaseComponent";
+import searchCocktails from "../api/searchCocktails";
 
 export class SearchComponent extends BaseComponent {
   constructor(root: HTMLElement) {

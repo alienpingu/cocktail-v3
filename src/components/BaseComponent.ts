@@ -1,5 +1,5 @@
-import { GlobalStore } from "../core/store.js";
-import type { ComponentState, EventListenerRecord, GlobalStoreState } from "../types/index.js";
+import { GlobalStore } from "../core/store";
+import type { ComponentState, EventListenerRecord, GlobalStoreState } from "../types/index";
 
 export abstract class BaseComponent {
   protected root: HTMLElement;

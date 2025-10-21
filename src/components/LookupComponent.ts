@@ -1,5 +1,5 @@
-import { BaseComponent } from "./BaseComponent.js";
-import type { Cocktail, IngredientData } from "../types/index.js";
+import { BaseComponent } from "./BaseComponent";
+import type { Cocktail } from "../types/index";
 
 export class LookupComponent extends BaseComponent {
   constructor(root: HTMLElement) {

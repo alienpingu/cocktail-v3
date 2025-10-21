@@ -1,6 +1,6 @@
-import { BaseComponent } from "./BaseComponent.js";
-import { CardComponent } from "./CardComponent.js";
-import type { Cocktail } from "../types/index.js";
+import { BaseComponent } from "./BaseComponent";
+import { CardComponent } from "./CardComponent";
+import type { Cocktail } from "../types/index";
 
 export class GridComponent extends BaseComponent {
   constructor(root: HTMLElement) {
