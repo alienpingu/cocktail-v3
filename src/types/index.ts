@@ -58,7 +58,7 @@ export interface Cocktail {
 
 export interface Route {
   path: string;
-  component: new (root: HTMLElement) => BaseComponent;
+  component: new (root: HTMLElement, routeParams?: Record<string, string>) => BaseComponent;
 }
 
 export interface RouteMatch {
