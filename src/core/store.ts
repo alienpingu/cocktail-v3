@@ -25,7 +25,6 @@ class Store<T extends Record<string, any>> {
   }
 }
 
-// 🔥 Istanza unica globale
 export const GlobalStore = new Store({
   theme: "light",
   counter: 0,
